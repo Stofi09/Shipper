@@ -7,7 +7,6 @@ import Order from "./components/Order";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import Subscription from "./components/Subscription";
-import {BasicTable} from "./components/BasicTable";
 import {SortingTable} from "./components/SortingTable";
 import Functions from "./components/Functions";
 import Section from "./components/Section";
