@@ -1,6 +1,17 @@
+import Subscription from "./Subscription";
+import Functions from "./Functions";
+import Section from "./Section";
+import Table from "./Table";
+import { useSelector } from "react-redux";
+
 
 const Main = () => {
+
+    const id = useSelector(state=>state.iD)
+
+
     return(
+        <>
         <section class="showcase">
         <div class="container grid">
             <div class="showcase-text">
@@ -26,6 +37,12 @@ const Main = () => {
             </div>
         </div>
     </section>
+    <Section/>
+    {id}
+    <Table/>    
+    <Subscription/>
+    <Functions/>
+    </>
     )
 } 
 export default Main;

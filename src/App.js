@@ -1,15 +1,13 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import About from "./components/About";
 import Order from "./components/Order";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
-import Subscription from "./components/Subscription";
-import {SortingTable} from "./components/SortingTable";
-import Functions from "./components/Functions";
-import Section from "./components/Section";
+import Login from "./components/pages/LoginPage";
+
 
 /* Font awesome*/
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -28,12 +26,9 @@ function App() {
         <Route path="/about" exact component={About} />
         <Route path="/order" exact component={Order} />
         <Route path="/projects" exact component={Projects} />
+        <Route path="/loginpage" exact component={Login} />
         <Route path="/cards"/>
       </Switch>
-      <Section/>
-      <SortingTable/>
-      <Subscription/>
-      <Functions/>
       <Footer/>
     </div>
     </Router> 

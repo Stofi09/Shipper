@@ -1,4 +1,5 @@
 import {Link} from 'react-scroll';
+import {Link as Link2} from  'react-router-dom';
 
 const Navbar = () => {
 
@@ -13,6 +14,7 @@ const Navbar = () => {
                     <li><Link to="subscription" spy={true} smooth={true} className="link">Pricing</Link></li>
                     <li><Link to="table" spy={true} smooth={true} className="link">Demo</Link></li>
                     <li><Link to="footer" spy={true} smooth={true} className="link">Contact</Link></li>
+                    <li><Link2 to="/loginpage" className="link">Login</Link2></li>
                     </ul>
                 </nav>
             </div>
