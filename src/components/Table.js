@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import axios from "axios";
-import Axios from "./api/Axios";
 import { useSelector, useDispatch } from "react-redux";
-import {setId} from "./redux/idActions"
+import {setId} from "./redux/idActions";
+import {Link} from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
+
+
+
+
 const Table = () => {
 
   const ID = useSelector(state=>state.iD);
   const dispatch = useDispatch();
   const MSG_API_REST_URL_CREATE = "http://localhost:5000/create";
   const MSG_API_REST_URL_ALL_LIST = "http://localhost:5000/all-list";
-  const MSG_API_REST_URL_LIST = "http://localhost:5000/list/" + "Bela";
   const MSG_API_REST_URL_DELETE = "http://localhost:5000/delete/";
   const MSG_API_REST_URL_UPDATE = "http://localhost:5000/update";
   const MSG_API_REST_URL_EQUIPMENTS_BY_ID = "http://localhost:5000/equipments/";
   const [data, setData] = useState([]);
   const [response2, setResponse2] = useState();
+
   const [order, setOrder] = useState({
     driver: "",
     supplier: "supplier",
@@ -116,17 +121,12 @@ const Table = () => {
           addRowPosition: "first",
         }}
         actions={[
+          
           {
-            icon: 'list',
+            icon:() => <Link to='/EquipmentTable'><Icon>list</Icon></Link>,
             tooltip: 'Save User',
-            onClick: (event, rowData) =>  axios.get(MSG_API_REST_URL_EQUIPMENTS_BY_ID + rowData.id).then((data) => {
-              console.log(data);
-              setData(data.data);
-              dispatch(setId(rowData.id));
-            })
-            .catch(function (ex) {
-              console.log(ex);
-            })
+            onClick: (event, rowData) =>  
+              dispatch(setId(rowData.id))
           }
         ]}
 

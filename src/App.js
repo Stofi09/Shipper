@@ -7,6 +7,7 @@ import Order from "./components/Order";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import Login from "./components/pages/LoginPage";
+import EquipmentTable from './components/EquipmentTable';
 
 
 /* Font awesome*/
@@ -27,6 +28,7 @@ function App() {
         <Route path="/order" exact component={Order} />
         <Route path="/projects" exact component={Projects} />
         <Route path="/loginpage" exact component={Login} />
+        <Route path="/EquipmentTable" exact component={EquipmentTable} />
         <Route path="/cards"/>
       </Switch>
       <Footer/>

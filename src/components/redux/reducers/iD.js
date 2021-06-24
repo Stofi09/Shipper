@@ -2,7 +2,7 @@ import { SET_ID,GET_ID } from "../types";
 
 
 
-const iD=(id = 4,action)=>{
+const iD=(id = 0,action)=>{
     console.log(action)
 
     switch(action.type){
