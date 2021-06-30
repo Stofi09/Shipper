@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {setId} from "./redux/idActions";
 import {Link} from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
-
+import {getOrderList, postOrder, updateOrder, deleteOrder} from "./Axios";
 
 
 
@@ -13,17 +13,12 @@ const Table = () => {
 
   const ID = useSelector(state=>state.iD);
   const dispatch = useDispatch();
-  const MSG_API_REST_URL_CREATE = "http://localhost:5000/create";
-  const MSG_API_REST_URL_ALL_LIST = "http://localhost:5000/all-list";
-  const MSG_API_REST_URL_DELETE = "http://localhost:5000/delete/";
-  const MSG_API_REST_URL_UPDATE = "http://localhost:5000/update";
-  const MSG_API_REST_URL_EQUIPMENTS_BY_ID = "http://localhost:5000/equipments/";
   const [data, setData] = useState([]);
   const [response2, setResponse2] = useState();
 
   const [order, setOrder] = useState({
     driver: "",
-    supplier: "supplier",
+    supplier: "",
   });
   const columns = [
     {
@@ -41,20 +36,16 @@ const Table = () => {
     },
   ];
 
-  const getList = () => {
-    return axios.get(MSG_API_REST_URL_ALL_LIST);
-  };
-
   useEffect(() => {
-    axios.post(MSG_API_REST_URL_CREATE, order).then((response) => {
-      setResponse2(response.data);
-      console.log(response.data);
-      console.log(response2);
-    });
+    if(order.driver === "" || order.supplier === ""){
+      console.log("empty order")
+    }else {
+      postOrder(order,setResponse2);
+    }
   }, [order]);
 
   useEffect(() => {
-    getList()
+    getOrderList()
       .then((data) => {
         console.log(data);
         setData(data.data);
@@ -79,6 +70,14 @@ const Table = () => {
               }));
               const updatedRows = [...data, { id: response2, ...newRow }];
               setTimeout(() => {
+                getOrderList()
+                .then((data) => {
+                  console.log(data);
+                  setData(data.data);
+                })
+                .catch(function (ex) {
+                  console.log(ex);
+                });
                 setData(updatedRows);
                 resolve();
               }, 2000);
@@ -86,11 +85,7 @@ const Table = () => {
           onRowDelete: (selectedRow) =>
             new Promise((resolve, reject) => {
               const index = selectedRow.tableData.id;
-              axios
-                .delete(MSG_API_REST_URL_DELETE + selectedRow.id)
-                .then((response) => {
-                  console.log(response);
-                });
+              deleteOrder(selectedRow.id);
               const updatedRows = [...data];
               updatedRows.splice(index, 1);
               setTimeout(() => {
@@ -101,10 +96,7 @@ const Table = () => {
           onRowUpdate:(updatedRow,oldRow)=>new Promise((resolve,reject)=>{
                 const index = oldRow.tableData.id;
                 console.log(updatedRow);
-                axios.put(MSG_API_REST_URL_UPDATE, updatedRow)
-                .then((response) => {
-                    console.log(response);
-                  });
+                updateOrder(updatedRow);
                 const updatedRows = [...data];
                 updatedRows[index]=updatedRow;
                 setTimeout(() => {
