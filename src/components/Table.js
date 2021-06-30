@@ -29,10 +29,21 @@ const Table = () => {
     {
       title: "Driver",
       field: "driver",
+      validate: rowData => {
+        if (rowData.driver === undefined || rowData.driver === "") {
+          return "Required"
+        } 
+          return true
+      }
     },
     {
       title: "Supplier",
       field: "supplier",
+      validate: rowData => {
+        if (rowData.supplier === undefined || rowData.supplier === "") {
+          return "Required"
+        }  return true
+      }
     },
   ];
 
@@ -113,10 +124,9 @@ const Table = () => {
           addRowPosition: "first",
         }}
         actions={[
-          
           {
             icon:() => <Link to='/EquipmentTable'><Icon>list</Icon></Link>,
-            tooltip: 'Save User',
+            tooltip: 'Equipments list',
             onClick: (event, rowData) =>  
               dispatch(setId(rowData.id))
           }

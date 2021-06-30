@@ -11,7 +11,7 @@ const EquipmentTable = () => {
     const [response2, setResponse2] = useState();
     const [equipment, setEquipment] = useState({
         name: "",
-        quantity: 0,
+        quantity: 1,
         deliveryListId:0
       });
 
@@ -24,10 +24,26 @@ const EquipmentTable = () => {
         {
           title: "Equipment",
           field: "name",
+          validate: rowData => {
+            if (rowData.name === undefined || rowData.name === "") {
+              return "Required"
+            } return true
+          } 
         },
         {
           title: "Quantity",
           field: "quantity",
+          type: "numeric",
+          validate: rowData => {
+            if (rowData.quantity === undefined || rowData.quantity === NaN) {
+              return "Required"
+            } else if (rowData.quantity === 0){
+              return "Quantity can not be 0."
+            } else if(rowData.quantity.length < 1){
+              return "Field is required."
+            }
+            return true
+          }
         },
       ];
 
@@ -66,7 +82,7 @@ const EquipmentTable = () => {
                   quantity: newRow.quantity,
                   deliveryListId:ID
                 }));
-                console.log(newRow);
+                console.log(newRow.quantity);
                 const updatedRows = [...data, { id: response2, ...newRow }];
                 setTimeout(() => {
                   getEquipmentList(ID)
