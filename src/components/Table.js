@@ -68,7 +68,7 @@ const Table = () => {
   return (
     <div>
       <MaterialTable
-        title="Table"
+        title="List of orders"
         data={data}
         columns={columns}
         editable={{

@@ -38,7 +38,6 @@ const Main = () => {
         </div>
     </section>
     <Section/>
-    {id}
     <Table/>    
     <Subscription/>
     <Functions/>

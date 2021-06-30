@@ -66,11 +66,11 @@ const EquipmentTable = () => {
             console.log(ex);
           });
       }, []);
-
+      const title = "Equipment list for order number: " + ID
     return (
         <div>
         <MaterialTable
-          title="Table"
+          title= {title}
           data={data}
           columns={columns}
           editable={{
