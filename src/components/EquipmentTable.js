@@ -3,7 +3,8 @@ import MaterialTable from "material-table";
 import { useSelector, useDispatch } from "react-redux";
 import {getId} from "./redux/idActions";
 import { getEquipmentList,postEquipment,updateEquipment,deleteEquipment,} from "./Axios";
- 
+
+
 const EquipmentTable = () => {
 
     const ID = useSelector(state=>state.iD);
@@ -120,6 +121,10 @@ const EquipmentTable = () => {
             })
           }}
           options={{
+            pageSize: 10,
+            pageSizeOptions: [5, 10,15, 20, 30 ,50, 75, 100 ],
+            toolbar: true,
+            paging: true,
             // save and cancel icon moved to the right side, columns are aligned
             actionsColumnIndex: -1,
             //adding new rows on the top instead of the bottom
