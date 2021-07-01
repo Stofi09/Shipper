@@ -3,6 +3,7 @@ import Functions from "./Functions";
 import Section from "./Section";
 import Table from "./Table";
 import { useSelector } from "react-redux";
+import Footer from "./Footer"
 
 
 const Main = () => {
@@ -41,6 +42,7 @@ const Main = () => {
     <Table/>    
     <Subscription/>
     <Functions/>
+    <Footer/>
     </>
     )
 } 

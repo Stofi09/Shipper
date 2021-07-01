@@ -31,7 +31,6 @@ function App() {
         <Route path="/EquipmentTable" exact component={EquipmentTable} />
         <Route path="/cards"/>
       </Switch>
-      <Footer/>
     </div>
     </Router> 
   );

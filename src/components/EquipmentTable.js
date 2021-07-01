@@ -68,7 +68,7 @@ const EquipmentTable = () => {
       }, []);
       const title = "Equipment list for order number: " + ID
     return (
-        <div>
+        <div className="equipmentTable">
         <MaterialTable
           title= {title}
           data={data}
