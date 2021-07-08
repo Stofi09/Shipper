@@ -45,6 +45,11 @@ const Table = () => {
         }  return true
       }
     },
+    {
+      title: "Num. of equipments",
+      field: "quantitySum",
+      editable: false,
+    }
   ];
 
   useEffect(() => {
