@@ -13,10 +13,10 @@ import EquipmentTable from './components/EquipmentTable';
 /* Font awesome*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faLock, faCheck, faMobile, faDatabase, faBell,  faShare, faCode, faCookie } from '@fortawesome/free-solid-svg-icons'
+import { faLock, faCheck, faMobile, faDatabase, faBell,  faShare, faCode, faCookie, faBatteryFull,faBatteryHalf, faBatteryEmpty } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab,faLock,faCheck,faMobile, faDatabase , faBell,faShare,faCode, faCookie );
+library.add(fab,faLock,faCheck,faMobile, faDatabase , faBell,faShare,faCode, faCookie,faBatteryFull,faBatteryHalf, faBatteryEmpty );
 function App() {
   return (
     <Router> 

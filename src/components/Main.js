@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Footer from "./Footer"
 
 
+
 const Main = () => {
 
     const id = useSelector(state=>state.iD)
@@ -39,7 +40,7 @@ const Main = () => {
         </div>
     </section>
     <Section/>
-    <Table/>    
+    <Table/>   
     <Subscription/>
     <Functions/>
     <Footer/>

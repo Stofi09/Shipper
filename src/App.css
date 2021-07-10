@@ -215,22 +215,25 @@ pre {
 }
 
 /* Card */
+.card{
+  background-color: #002240;
+}
 
 .card-grid{
   display: grid;
   justify-items: center;
   height: 100%;
   gap:10px;
+  
 }
 
-/* Table */
 
 
 /* Functions */
 .functions{
-  height: 400px;
+  height: 350px;
   background-color:  var(--tertiary-color);
-  padding-top: 100px;
+  padding-top: 70px;
 color: #fff;
 }
 
@@ -418,7 +421,7 @@ color: #fff;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  margin: 10px;
+  margin: 50px;
 }
 
 .btn {
