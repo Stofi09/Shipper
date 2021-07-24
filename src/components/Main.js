@@ -28,7 +28,7 @@ const Main = () => {
             </div>
 
             <div class="showcase-form card">
-                <h2>Create an Order</h2>
+                <h2>Subscribe</h2>
                  <form>
                     <div class="form-control">
                         <input type="text" name="name" placeholder="Name" required></input>
@@ -39,7 +39,7 @@ const Main = () => {
                     <div class="form-control">
                         <input type="email" name="email" placeholder="Email" required></input>
                     </div>
-                    <input type="submit" value="Create" class="btn btn-primary"></input>
+                    <input type="submit" value="Subscribe" class="btn btn-primary"></input>
                 </form>
             </div>
         </div>
