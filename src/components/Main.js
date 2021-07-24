@@ -1,9 +1,9 @@
 import Subscription from "./Subscription";
 import Functions from "./Functions";
 import Section from "./Section";
-import Table from "./Table";
 import { useSelector } from "react-redux";
 import Footer from "./Footer"
+import DummyTable from "./DummyTable";
 import React
  from "react";
 
@@ -45,7 +45,7 @@ const Main = () => {
         </div>
     </section>
     <Section/>
-    <Table/>   
+    <DummyTable/>   
     <Subscription/>
     <Functions/>
     <Footer/>
