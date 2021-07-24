@@ -4,13 +4,18 @@ import Section from "./Section";
 import Table from "./Table";
 import { useSelector } from "react-redux";
 import Footer from "./Footer"
-
+import React
+ from "react";
 
 
 const Main = () => {
 
     const id = useSelector(state=>state.iD)
 
+
+    React.useEffect(()=>{
+      console.log(localStorage);
+    },[])
 
     return(
         <>

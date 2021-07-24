@@ -10,11 +10,11 @@ import {getOrderList, postOrder, updateOrder, deleteOrder} from "./Axios";
 
 
 const Table = () => {
-
-  const ID = useSelector(state=>state.iD);
+  const ID = useSelector((state) => state.iD);
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [response2, setResponse2] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [order, setOrder] = useState({
     driver: "",
@@ -29,34 +29,35 @@ const Table = () => {
     {
       title: "Driver",
       field: "driver",
-      validate: rowData => {
+      validate: (rowData) => {
         if (rowData.driver === undefined || rowData.driver === "") {
-          return "Required"
-        } 
-          return true
-      }
+          return "Required";
+        }
+        return true;
+      },
     },
     {
       title: "Supplier",
       field: "supplier",
-      validate: rowData => {
+      validate: (rowData) => {
         if (rowData.supplier === undefined || rowData.supplier === "") {
-          return "Required"
-        }  return true
-      }
+          return "Required";
+        }
+        return true;
+      },
     },
     {
       title: "Num. of equipments",
       field: "quantitySum",
       editable: false,
-    }
+    },
   ];
 
   useEffect(() => {
-    if(order.driver === "" || order.supplier === ""){
-      console.log("empty order")
-    }else {
-      postOrder(order,setResponse2);
+    if (order.driver === "" || order.supplier === "") {
+      console.log("empty order");
+    } else {
+      postOrder(order, setResponse2);
     }
   }, [order]);
 
@@ -69,6 +70,12 @@ const Table = () => {
       .catch(function (ex) {
         console.log(ex);
       });
+    if (localStorage.length === 0) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+      console.log(isLoggedIn);
+    }
   }, []);
   return (
     <div>
@@ -87,13 +94,13 @@ const Table = () => {
               const updatedRows = [...data, { id: response2, ...newRow }];
               setTimeout(() => {
                 getOrderList()
-                .then((data) => {
-                  console.log(data);
-                  setData(data.data);
-                })
-                .catch(function (ex) {
-                  console.log(ex);
-                });
+                  .then((data) => {
+                    console.log(data);
+                    setData(data.data);
+                  })
+                  .catch(function (ex) {
+                    console.log(ex);
+                  });
                 setData(updatedRows);
                 resolve();
               }, 2000);
@@ -109,18 +116,18 @@ const Table = () => {
                 resolve();
               }, 2000);
             }),
-          onRowUpdate:(updatedRow,oldRow)=>new Promise((resolve,reject)=>{
-                const index = oldRow.tableData.id;
-                console.log(updatedRow);
-                updateOrder(updatedRow);
-                const updatedRows = [...data];
-                updatedRows[index]=updatedRow;
-                setTimeout(() => {
-                    setData(updatedRows);
-                    resolve();
-                  }, 2000);
-
-          })
+          onRowUpdate: (updatedRow, oldRow) =>
+            new Promise((resolve, reject) => {
+              const index = oldRow.tableData.id;
+              console.log(updatedRow);
+              updateOrder(updatedRow);
+              const updatedRows = [...data];
+              updatedRows[index] = updatedRow;
+              setTimeout(() => {
+                setData(updatedRows);
+                resolve();
+              }, 2000);
+            }),
         }}
         options={{
           // save and cancel icon moved to the right side, columns are aligned
@@ -130,13 +137,21 @@ const Table = () => {
         }}
         actions={[
           {
-            icon:() => <Link to='/EquipmentTable'><Icon>list</Icon></Link>,
-            tooltip: 'Equipments list',
-            onClick: (event, rowData) =>  
-              dispatch(setId(rowData.id))
-          }
+            icon: () => (
+              <Link to={isLoggedIn ? "/EquipmentTable" : "/"}>
+                <Icon>list</Icon>
+              </Link>
+            ),
+            tooltip: "Equipments list",
+            onClick: (event, rowData) => {
+              if (isLoggedIn) {
+                dispatch(setId(rowData.id));
+              } else {
+                alert(" You have to login first!");
+              }
+            },
+          },
         ]}
-
       />
     </div>
   );

@@ -22,7 +22,7 @@ export const LoginPage=({loading,error,...props})=>{
             console.log("response",response);
             if(response.status===200){
                 props.setUser(response.data);
-                props.history.push('/about');
+                props.history.push('/lists');
             }
             else{
                props.loginFailure('Something Wrong!Please Try Again'); 
