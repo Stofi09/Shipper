@@ -385,8 +385,10 @@ color: #fff;
   }
 }
 
-/* Mobile */
-@media (max-width: 500px) {
+@media (max-width: 630px){
+  .logo{
+    visibility: hidden;
+  }
   .navbar {
     height: 120px;
   }
@@ -397,8 +399,13 @@ color: #fff;
 
   .navbar ul {
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(201, 32, 32, 0.1);
   }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+ 
   
   .showcase-form {
     width: 300px;

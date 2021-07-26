@@ -14,6 +14,14 @@ export const userLogin=(authRequest)=>{
     })
 }
 
+export const userRegister=(authRequest)=>{
+    return axios({
+        'method':'POST',
+        'url':`${process.env.hostUrl||'http://localhost:5000'}/register`,
+        'data':authRequest
+    })
+}
+
 export const fetchUserData=(authRequest)=>{
     return axios({
         method:'GET',

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Login from "./components/pages/LoginPage";
 import EquipmentTable from './components/EquipmentTable';
 import List from "./components/Lists";
+import Register from "./components/Register";
 
 
 /* Font awesome*/
@@ -32,6 +33,7 @@ function App() {
         <Route path="/EquipmentTable" exact component={EquipmentTable} />
         <Route path="/cards"/>
         <Route path="/lists" exact component={List}/>
+        <Route path="/register" exact component={Register}/>
       </Switch>
     </div>
     </Router> 

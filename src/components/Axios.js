@@ -63,6 +63,16 @@ const deleteEquipment = (id) => {
       console.log(response);
     });
   }
+  /*Registration*/ 
+
+  const MSG_API_REST_URL_REGISTER = "http://localhost:5000/register";
+
+  const postRegister = (account,setResponse) => {
+    return axios.post(MSG_API_REST_URL_REGISTER, account).then((response) => {
+      setResponse(response.status);
+      console.log(response.status);
+    });
+  }
 
 export {
     getEquipmentList,
@@ -72,5 +82,6 @@ export {
     getOrderList,
     postOrder,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    postRegister
 }
