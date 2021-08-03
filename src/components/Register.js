@@ -2,7 +2,7 @@ import react,{useState} from 'react';
 import {Alert,Spinner} from 'react-bootstrap';
 import {userRegister} from "./api/authenticationService";
 
-const Register=()=>{
+const Register=({...props})=>{
 
 
     const [values, setValues] = useState({
@@ -20,6 +20,7 @@ const Register=()=>{
             console.log(response)
             if (response.status === 200){
               console.log("all good")
+              props.history.push('/loginpage');
             }else {
               console.log("baj van")
             }
