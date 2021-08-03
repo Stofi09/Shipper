@@ -21,10 +21,8 @@ const Lists = (props) => {
 
 
     const logOut=()=>{
-
         localStorage.clear();
         props.history.push('/');
-
     }
 
 
@@ -34,7 +32,6 @@ const Lists = (props) => {
                 <br></br>
                 {data && data.roles && data.roles.filter(value => value.role==='ADMIN').length>0 && <Button type="variant">Add User</Button> }
                 <br></br>
-
                 <Button style={{marginTop:'5px'}} onClick={() =>logOut()}>Logout</Button>
             <Table/>;
         </div>
