@@ -74,6 +74,14 @@ const deleteEquipment = (id) => {
     });
   }
 
+/* User Table*/
+
+  const MSG_API_REST_URL_GET_USERS = "http://localhost:5000/getusers"
+
+  const getAllUsers = () => {
+    return axios.get(MSG_API_REST_URL_GET_USERS);
+  }
+
 export {
     getEquipmentList,
     postEquipment,
@@ -83,5 +91,6 @@ export {
     postOrder,
     updateOrder,
     deleteOrder,
-    postRegister
+    postRegister,
+    getAllUsers
 }
