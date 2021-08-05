@@ -77,10 +77,18 @@ const deleteEquipment = (id) => {
 /* User Table*/
 
   const MSG_API_REST_URL_GET_USERS = "http://localhost:5000/getusers"
+  const MSG_API_REST_URL_UPDATE_USER = "http://localhost:5000/updateUser"
 
   const getAllUsers = () => {
     return axios.get(MSG_API_REST_URL_GET_USERS);
   }
+  const updateUser = (updatedRow) => {
+    return axios.put(MSG_API_REST_URL_UPDATE_USER, updatedRow)
+    .then((response) => {
+        console.log(response);
+      });
+  }
+
 
 export {
     getEquipmentList,
@@ -92,5 +100,6 @@ export {
     updateOrder,
     deleteOrder,
     postRegister,
-    getAllUsers
+    getAllUsers,
+    updateUser
 }

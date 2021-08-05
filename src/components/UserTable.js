@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import {getOrderList, postOrder, updateOrder, deleteOrder, getAllUsers} from "./Axios";
-
+import {updateUser, updateOrder, deleteOrder, getAllUsers} from "./Axios";
 
 
 const UserTable = () => {
@@ -9,7 +8,10 @@ const UserTable = () => {
 
   const [data, setData] = useState([]);
   const [response2, setResponse2] = useState();
-
+  const [user, setUser] = useState({
+    name:"asd",
+    role:"USER"
+  })
 
   const columns = [
     {
@@ -21,7 +23,7 @@ const UserTable = () => {
       title: "User",
       field: "userName",
       validate: (rowData) => {
-        if (rowData.driver === undefined || rowData.driver === "") {
+        if (rowData.userName === undefined || rowData.userName === "") {
           return "Required";
         }
         return true;
@@ -30,9 +32,14 @@ const UserTable = () => {
     {
       title: "Roles",
       field: "roles",
+      validate: (rowData) => {
+        if (rowData.roles.includes("ADMIN")||rowData.roles.includes("USER")||rowData.roles.includes("VISITOR") ) {
+         return true;
+        }
+        return "Only uppercase letters";
+      },
     },
   ];
-
 
   useEffect(() => {
     getAllUsers()
@@ -47,42 +54,45 @@ const UserTable = () => {
   }, []);
   return (
     <div>
+
       <MaterialTable
-        title="List of orders"
+        title="List of users"
         data={data}
         columns={columns}
         editable={{
-          onRowDelete: (selectedRow) =>
-            new Promise((resolve, reject) => {
-              const index = selectedRow.tableData.id;
-              deleteOrder(selectedRow.id);
-              const updatedRows = [...data];
-              updatedRows.splice(index, 1);
-              setTimeout(() => {
-                setData(updatedRows);
-                resolve();
-              }, 2000);
-            }),
-          onRowUpdate: (updatedRow, oldRow) =>
-            new Promise((resolve, reject) => {
-              const index = oldRow.tableData.id;
-              console.log(updatedRow);
-              updateOrder(updatedRow);
-              const updatedRows = [...data];
-              updatedRows[index] = updatedRow;
-              setTimeout(() => {
-                setData(updatedRows);
-                resolve();
-              }, 2000);
-            }),
+        onRowDelete: (selectedRow) =>
+          new Promise((resolve, reject) => {
+            const index = selectedRow.tableData.id;
+            deleteOrder(selectedRow.id);
+            const updatedRows = [...data];
+            updatedRows.splice(index, 1);
+            setTimeout(() => {
+              setData(updatedRows);
+              resolve();
+            }, 2000);
+          }),
+        onRowUpdate: (updatedRow, oldRow) =>
+          new Promise((resolve, reject) => {
+            const index = oldRow.tableData.id;
+            console.log(updatedRow);
+            updateUser(updatedRow);
+            const updatedRows = [...data];
+            updatedRows[index] = updatedRow;
+            setTimeout(() => {
+              setData(updatedRows);
+              resolve();
+            }, 2000);
+          }),
         }}
         options={{
           // save and cancel icon moved to the right side, columns are aligned
           actionsColumnIndex: -1,
           //adding new rows on the top instead of the bottom
           addRowPosition: "first",
+          
         }}
-     
+        actions={[
+     ]}
       />
     </div>
   );
