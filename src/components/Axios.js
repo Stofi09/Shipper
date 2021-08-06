@@ -78,6 +78,7 @@ const deleteEquipment = (id) => {
 
   const MSG_API_REST_URL_GET_USERS = "http://localhost:5000/getusers"
   const MSG_API_REST_URL_UPDATE_USER = "http://localhost:5000/updateUser"
+  const MSG_API_REST_URL_DELETE_USER = "http://localhost:5000/deleteUser/"
 
   const getAllUsers = () => {
     return axios.get(MSG_API_REST_URL_GET_USERS);
@@ -88,7 +89,12 @@ const deleteEquipment = (id) => {
         console.log(response);
       });
   }
-
+  const deleteUser = (id) => {
+    axios.delete(MSG_API_REST_URL_DELETE_USER + id)
+    .then((response) => {
+      console.log(response);
+    });
+  }
 
 export {
     getEquipmentList,
@@ -101,5 +107,6 @@ export {
     deleteOrder,
     postRegister,
     getAllUsers,
-    updateUser
+    updateUser,
+    deleteUser
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import {updateUser, updateOrder, deleteOrder, getAllUsers} from "./Axios";
+import {updateUser, deleteUser, getAllUsers} from "./Axios";
 
 
 const UserTable = () => {
@@ -63,7 +63,7 @@ const UserTable = () => {
         onRowDelete: (selectedRow) =>
           new Promise((resolve, reject) => {
             const index = selectedRow.tableData.id;
-            deleteOrder(selectedRow.id);
+            deleteUser(selectedRow.id);
             const updatedRows = [...data];
             updatedRows.splice(index, 1);
             setTimeout(() => {
