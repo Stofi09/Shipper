@@ -51,6 +51,11 @@ const Table = () => {
       field: "quantitySum",
       editable: false,
     },
+    {
+      title: "Status",
+      field: "isCompleted",
+      type:"boolean",
+    },
   ];
 
   useEffect(() => {
