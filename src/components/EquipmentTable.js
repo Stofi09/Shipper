@@ -3,13 +3,14 @@ import MaterialTable from "material-table";
 import { useSelector, useDispatch } from "react-redux";
 import {getId} from "./redux/idActions";
 import { getEquipmentList,postEquipment,updateEquipment,deleteEquipment,} from "./Axios";
-
+import { CsvBuilder } from 'filefy';
 
 const EquipmentTable = () => {
 
     const ID = useSelector(state=>state.iD);
     const [data, setData] = useState([]);
     const [response2, setResponse2] = useState();
+    const [selectedRows, setSelectedRows] = useState([])
     const [equipment, setEquipment] = useState({
         name: "",
         quantity: 1,
@@ -48,6 +49,12 @@ const EquipmentTable = () => {
         },
       ];
 
+      const exportAllSelectedRows=()=>{
+        new CsvBuilder("tableData.csv")
+         .setColumns(columns.map(col=>col.title))
+         .addRows(selectedRows.map(rowData=>columns.map(col=>rowData[col.field])))
+         .exportFile();
+       }
      
       useEffect(() => {
         if(equipment.name === "" || equipment.quantity === 0){
@@ -120,7 +127,9 @@ const EquipmentTable = () => {
                     }, 2000);
             })
           }}
+          onSelectionChange={(rows) => setSelectedRows(rows)}
           options={{
+            selection:true,
             pageSize: 10,
             pageSizeOptions: [5, 10,15, 20, 30 ,50, 75, 100 ],
             toolbar: true,
@@ -129,7 +138,16 @@ const EquipmentTable = () => {
             actionsColumnIndex: -1,
             //adding new rows on the top instead of the bottom
             addRowPosition: "first",
+            exportButton:true
           }}
+          actions={[
+            {
+              icon: ()=><button>Export</button>,
+              tooltip: "Export all selected rows",
+              onClick: () => exportAllSelectedRows()
+            }
+  
+          ]}
         />
       </div>
     )
