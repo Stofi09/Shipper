@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {setId} from "./redux/idActions";
 import {Link} from 'react-router-dom';
@@ -48,7 +47,7 @@ const Table = () => {
     },
     {
       title: "Num. of equipments",
-      field: "quantitySum",
+      field: "quantitysum",
       editable: false,
     },
     {
